@@ -31,7 +31,7 @@ To run the project locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/subhojitb44/com.authentication.git
 cd com.authentication
 ```
 
@@ -53,10 +53,10 @@ mvn spring-boot:run
 
 - Register a new user: `/api/authenticate/register`
 - Login: `/api/authenticate/login`
-- Refresh Access Token: `/api/authenticate/validate-token`
+- Refresh/Validate Access Token: `/api/authenticate/validate-token`
 - Logout: `/api/authenticate/logout`
 
-## Creator
+## Contact
 
 - [Subhojit Bhattacharya] - [subhojitb44@gmail.com]
 
