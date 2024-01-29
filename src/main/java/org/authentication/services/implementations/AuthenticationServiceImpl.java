@@ -4,23 +4,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.authentication.entities.AppUser;
 import org.authentication.enums.AvailabilityStateEnum;
-import org.authentication.services.type.auth.TokenRequestResponse;
 import org.authentication.repositories.UserRepository;
-import org.authentication.services.type.auth.AuthenticationRequestDto;
-import org.authentication.services.type.auth.RegisterRequestDto;
 import org.authentication.services.interfaces.AuthenticationServiceInterface;
 import org.authentication.services.interfaces.UserServiceInterface;
 import org.authentication.services.security.JwtServiceImpl;
+import org.authentication.services.type.auth.AuthenticationRequestDto;
+import org.authentication.services.type.auth.RegisterRequestDto;
+import org.authentication.services.type.auth.TokenRequestResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
 
+/**
+ * Created by subho
+ * Date: 1/29/2024
+ */
 
 @Service
 @RequiredArgsConstructor

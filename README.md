@@ -1,10 +1,13 @@
 # OAuth Service - Authentication Project
 
-OAuth Service is an authentication project built using Java 17 and Spring Boot 3.1.1 with MongoDB as the database backend.
+OAuth Service is an authentication project built using Java 17 and Spring Boot 3.1.1 with MongoDB as the database
+backend.
 
 ## Overview
 
-This project provides authentication services using OAuth (Open Authorization) for securing access to resources. It implements various authentication mechanisms and provides endpoints for user authentication, authorization, and token management.
+This project provides authentication services using OAuth (Open Authorization) for securing access to resources. It
+implements various authentication mechanisms and provides endpoints for user authentication, authorization, and token
+management.
 
 ## Features
 
@@ -37,7 +40,8 @@ cd com.authentication
 
 2. Configure MongoDB:
 
-    - Ensure MongoDB is installed and running locally or update the MongoDB connection settings in the `application.properties` file.
+    - Ensure MongoDB is installed and running locally or update the MongoDB connection settings in
+      the `application.properties` file.
 
 3. Build and run the project:
 

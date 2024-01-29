@@ -1,13 +1,17 @@
 package org.authentication.services.type.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Builder @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
+/**
+ * Created by subho
+ * Date: 1/29/2024
+ */
+@Builder
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthenticationRequestDto {
     private String username;
     private String password;

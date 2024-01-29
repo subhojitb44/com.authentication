@@ -9,7 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service @RequiredArgsConstructor
+/**
+ * Created by subho
+ * Date: 1/29/2024
+ */
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserServiceInterface {
     private final UserRepository userRepository;
     private final JwtServiceImpl jwtServiceImpl;
@@ -21,7 +26,7 @@ public class UserServiceImpl implements UserServiceInterface {
 
     @Override
     public AppUser saveUser(AppUser user) {
-       return userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override

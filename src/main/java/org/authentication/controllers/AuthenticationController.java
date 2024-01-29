@@ -2,22 +2,23 @@ package org.authentication.controllers;
 
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
 import org.authentication.entities.AppUser;
-import org.authentication.services.type.auth.TokenRequestResponse;
+import org.authentication.services.implementations.AuthenticationServiceImpl;
 import org.authentication.services.type.auth.AuthenticationRequestDto;
 import org.authentication.services.type.auth.RegisterRequestDto;
-import org.authentication.services.implementations.AuthenticationServiceImpl;
+import org.authentication.services.type.auth.TokenRequestResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController @RequiredArgsConstructor @Slf4j
+/**
+ * Created by subho
+ * Date: 1/29/2024
+ */
+@RestController
+@RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/api/authenticate")
 public class AuthenticationController {
     private final AuthenticationServiceImpl service;
@@ -29,6 +30,7 @@ public class AuthenticationController {
                 ? ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This username is already taken try another one")
                 : ResponseEntity.status(HttpStatus.CREATED).body(authResponse);
     }
+
     @PostMapping("/login")
     public ResponseEntity<Object> authenticate(@RequestBody AuthenticationRequestDto request) {
         Object authResponse = service.authenticate(request);
@@ -39,11 +41,13 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(authResponse);
     }
+
     @GetMapping("/validate-token")
-    public AppUser validateToken(@PathParam("token") String token){
-        log.info("Received token {}",token);
+    public AppUser validateToken(@PathParam("token") String token) {
+        log.info("Received token {}", token);
         return service.validateToken(token);
     }
+
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@PathParam("token") String token) {
         boolean logoutSuccess = service.logout(token);

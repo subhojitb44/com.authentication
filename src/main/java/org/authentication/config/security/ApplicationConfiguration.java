@@ -1,6 +1,7 @@
 package org.authentication.config.security;
 
 import lombok.RequiredArgsConstructor;
+import org.authentication.services.interfaces.UserServiceInterface;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,9 +11,13 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.authentication.services.interfaces.UserServiceInterface;
 
-@Configuration @RequiredArgsConstructor
+/**
+ * Created by subho
+ * Date: 1/29/2024
+ */
+@Configuration
+@RequiredArgsConstructor
 public class ApplicationConfiguration {
     private final UserServiceInterface userService;
 
@@ -20,6 +25,7 @@ public class ApplicationConfiguration {
     public UserDetailsService userDetailsService() {
         return userService::findUserByUsername;
     }
+
     @Bean
     // The AuthenticationProvider interface is used to authenticate a user. It takes an Authentication object as input,
     // which contains the credentials of the user (such as a username and password), and returns an authenticated Authentication object if the credentials are valid.
@@ -32,10 +38,12 @@ public class ApplicationConfiguration {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

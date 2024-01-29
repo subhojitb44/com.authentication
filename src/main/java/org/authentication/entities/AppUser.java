@@ -1,11 +1,6 @@
 package org.authentication.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.authentication.enums.AvailabilityStateEnum;
 import org.authentication.enums.RoleEnum;
 import org.authentication.repositories.SequenceRepository;
@@ -20,6 +15,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Created by subho
+ * Date: 1/29/2024
+ */
 @Builder
 @Getter
 @Setter
@@ -45,6 +44,15 @@ public class AppUser implements UserDetails {
     private AvailabilityStateEnum status;
 
     private List<RoleEnum> role;
+    @Transient
+    @Autowired
+    private SequenceRepository sequenceRepository;
+
+    // Implement UserDetails methods
+
+    public AppUser(String name, String username) {
+        this.ccId = generateId(name, username);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -52,8 +60,6 @@ public class AppUser implements UserDetails {
                 .map(role -> new SimpleGrantedAuthority(role.name()))
                 .toList();
     }
-
-    // Implement UserDetails methods
 
     @Override
     public String getPassword() {
@@ -85,15 +91,7 @@ public class AppUser implements UserDetails {
         return true;
     }
 
-    @Transient
-    @Autowired
-    private SequenceRepository sequenceRepository;
-
-    public AppUser(String name,String username) {
-        this.ccId = generateId(name,username);
-    }
-
-    private String generateId(String name,String username) {
+    private String generateId(String name, String username) {
         String prefix = name.substring(0, Math.min(name.length(), 3)).toUpperCase();
         Sequence sequence = sequenceRepository.findByName(username);
         long nextValue = sequence != null ? sequence.getValue() + 1 : 1;

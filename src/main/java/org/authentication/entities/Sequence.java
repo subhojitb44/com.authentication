@@ -4,6 +4,10 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Created by subho
+ * Date: 1/29/2024
+ */
 @Document(collection = "sequences")
 @Builder
 @Getter
